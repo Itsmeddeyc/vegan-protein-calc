@@ -1,0 +1,671 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vegan Protein Cheat Sheet | Vegan Protein Mastery</title>
+  <meta name="description" content="Hit your protein target on a plant-based diet without blowing calories. A clean, printable cheat sheet by Joe Wax | The Plant Based Coach (Vegan Protein Mastery)." />
+  <!-- Google Fonts Import -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400&family=Roboto:wght@300;400;700&family=Open+Sans:wght@500&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --red:#B30000; --ink:#111111; --text:#333333; --muted:#666666;
+      --bg:#ffffff; --surface:#f9f9f9; --line:#eeeeee;
+      --radius-xl:18px; --radius-lg:14px; --radius:10px;
+      --shadow:0 12px 30px rgba(0,0,0,.08); --maxw:900px;
+    }
+    html,body{margin:0;padding:0;background:var(--surface);color:var(--text);font-family:'Roboto',system-ui,-apple-system,Segoe UI,Arial,sans-serif;font-weight:400;line-height:1.6; overflow-x:hidden;}
+    *,*::before,*::after{box-sizing:border-box}
+    
+    h1,h2,h3{font-family:'Oswald',sans-serif;font-weight:400;color:var(--ink)}
+    .wrap{max-width:var(--maxw);margin:32px auto;background:var(--bg);box-shadow:var(--shadow);border-radius:24px;overflow:hidden}
+    .pad{padding:28px}
+    header{display:flex;gap:16px;align-items:center;border-bottom:1px solid var(--line);background:linear-gradient(180deg,#ffffff,#fdfdfd)}
+    .logo{width:44px;height:44px;border-radius:12px;box-shadow:0 6px 16px rgba(0,0,0,.1)}
+    .title h1{font-size:22px;line-height:1.2;margin:0}
+    .title .sub{font-size:13px;color:#5b6879}
+    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center}
+    h2{font-size:28px;margin:0 0 8px}
+    p.lead{margin:0;color:#435063}
+    .panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-xl);padding:18px}
+    .calc-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    label{font-size:12px;color:#4b5563}
+    input,select{width:100%;padding:12px;border-radius:12px;border:1px solid #d5dbe3;background:#fff;color:#0f172a;outline:none}
+    input:focus,select:focus{border-color:var(--red)}
+    .btn{appearance:none;border:0;cursor:pointer;border-radius:12px;padding:12px 14px;font-family:'Roboto',sans-serif;font-weight:700;background:var(--red);color:#fff;box-shadow:0 10px 22px rgba(179,0,0,.25)}
+    .result{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+    .badge{background:#fceded;border:1px solid #f2bfbf;color:#590000;padding:10px 12px;border-radius:12px;font-weight:700;text-align:center}
+    .small{font-size:12px;color:#64748b}
+    section{border-top:1px solid var(--line)}
+    section h3{margin:12px 0 6px}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .callout{background:#f5f5f5;border:1px solid #e0e0e0;color:#424242;padding:12px 14px;border-radius:14px;font-size:14px}
+    .testimonial p{margin:0 0 8px}
+    footer{border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+
+/* Override protein status styles to make them pop */
+#proteinStatus {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0f5132; /* good contrast against pale/green badges */
+}
+
+
+/* Custom override for Calculate button only */
+#calcBtn {
+  background: #18BD5BFF;
+  box-shadow: 0 10px 22px rgba(24, 189, 91, 0.25);
+}
+
+
+/* Smooth colour transitions on the running-total badge */
+.badge{ transition: background-color .25s ease, border-color .25s ease, color .2s ease; }
+
+/* Low target reached: pale green */
+.badge.target-low{
+  background:#eaf7ef;
+  border-color:#cbead8;
+  color:#0f5132;
+}
+
+/* High target reached: solid green */
+.badge.target-high{
+  background:#18BD5BFF;  /* specified by you */
+  border-color:#119649;
+  color:#ffffff;
+}
+
+
+    /* Responsive layout changes */
+    @media(max-width:840px){
+      .hero,.grid-2{grid-template-columns:1fr}
+    }
+    @media(max-width:640px){
+      .wrap{margin:0; border-radius: 0;}
+      .pad{padding:20px}
+      .calc-row,.result{grid-template-columns:1fr}
+    }
+
+    @media print{
+      .no-print{display:none!important}
+      body{background:#fff}
+      .wrap{box-shadow:none}
+    }
+
+.foods{display:flex;flex-direction:column;gap:10px}
+.food-row{display:flex;align-items:center;justify-content:space-between;border:1px solid var(--line);background:#fff;border-radius:12px;padding:10px 12px}
+.food-name{display:flex;flex-direction:column;gap:3px}
+.food-name .muted{color:#64748b;font-size:12px}
+.food-qty{display:flex;align-items:center;gap:6px}
+.qty-input{width:70px;padding:8px 10px;border-radius:10px;border:1px solid #d5dbe3}
+.qty-btn{appearance:none;border:1px solid #d5dbe3;background:#f8fafc;border-radius:10px;padding:6px 10px;cursor:pointer}
+.qty-btn:active{transform:translateY(1px)}
+
+.tips-head{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin:0 0 8px;
+}
+.tips-head h3{ margin:0; }
+
+.skip-link{
+  position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;
+}
+.skip-link:focus{
+  position:fixed; left:12px; top:12px; width:auto; height:auto;
+  padding:8px 10px; background:#000; color:#fff; border-radius:8px; z-index:9999;
+}
+
+
+  </style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+  <div class="wrap">
+    <div class="pad">
+     <header class="pad" role="banner" style="padding-left:0;padding-right:0;">
+        <a href="https://veganproteinmastery.com/?lm=proteincheatsheet" target="_blank">
+          <img src="https://storage.googleapis.com/msgsndr/knFGsGObe2Xhhalou0C6/media/6839a970d9068777d51d25d4.png" alt="Vegan Protein Mastery Logo" class="logo">
+        </a>
+        <div class="title">
+          <h1>Vegan Protein Cheat Sheet</h1>
+          <div class="sub">By Joe Wax | The Plant Based Coach</div>
+        </div>
+        <div style="margin-left:auto" class="no-print">
+          <button class="btn" onclick="window.print()">Download PDF</button>
+        </div>
+      </header>
+
+<main id="main" tabindex="-1">
+
+  <!-- HERO -->
+<section class="pad">
+  <div class="hero">
+    <div>
+      <h2>Step 1 — Set your daily protein target</h2>
+      <p class="lead">Choose a goal and enter your body weight. The ranges are evidence-based and practical for plant-based lifters.</p>
+      <div class="callout">Tip: If you’re dieting hard or want to keep it simple, aim near the top of the range.</div>
+    </div>
+    <div class="panel">
+      <div class="calc-row">
+        <div>
+          <label for="goal">Goal (Protein Intake Aim)</label>
+          <select id="goal">
+            <option value="gain">Muscle Gain (0.82–1.0 g/lb | 1.8–2.2 g/kg)</option>
+            <option value="fatloss">Fat Loss / Recomp (0.91–1.09 g/lb | 2.0–2.4 g/kg)</option>
+            <option value="health">General Health (0.64–0.73 g/lb | 1.4–1.6 g/kg)</option>
+          </select>
+        </div>
+        <div>
+          <label for="units">Units</label>
+          <select id="units">
+            <option value="kg">kg</option>
+            <option value="lb" selected>lb</option>
+          </select>
+        </div>
+      </div>
+      <div class="calc-row" style="margin-top:10px">
+        <div>
+          <label for="weight">Body weight</label>
+          <input id="weight" type="number" min="30" max="250" step="0.1" placeholder="e.g. 165"/>
+        </div>
+        <div style="display:flex;align-items:flex-end">
+          <button class="btn" id="calcBtn" type="button">Calculate</button>
+        </div>
+      </div>
+      <div class="result" id="result" style="display:none">
+        <div class="badge"><div>Target (low)</div><div id="pLow">— g/day</div></div>
+        <div class="badge"><div>Target (high)</div><div id="pHigh">— g/day</div></div>
+        <div class="badge"><div>Per-meal (×3–4)</div><div id="pPer">— g/meal</div></div>
+      </div>
+      <div class="small">Distribute protein across 3–4 meals.</div>
+    </div>
+  </div>
+</section>
+
+<!-- STEP 2 -->
+<section class="pad">
+  <h3>Step 2 — High-protein vegan foods (per 100g - 1/2 cup - 3.6oz)</h3>
+  <div class="panel">
+
+    <!-- Controls -->
+    <div class="small" style="display:flex;gap:10px;align-items:center;margin-bottom:10px;">
+      <span><strong>How it works:</strong> set servings for each food (defaults are per 100 g, except where noted). Totals update automatically.</span>
+      <button class="btn" type="button" id="clearFoods" style="margin-left:auto;padding:8px 10px;font-weight:700;">Clear</button>
+    </div>
+
+    <!-- Calculated Running total -->
+   <div class="result" style="margin-bottom:14px;grid-template-columns:1fr;">
+  <div id="proteinBadge" class="badge" style="display:flex;justify-content:space-between;align-items:center;">
+    <div><strong>Selected protein today (Complete Step 1 first)</strong></div>
+    <div id="proteinTotal">0 g</div>
+  </div>
+  <div id="proteinStatus" class="small" aria-live="polite" style="display:none;margin-top:6px;"></div>
+</div>
+
+
+    <!-- Food list -->
+    <div id="foods" class="foods">
+
+      <!-- Seitan -->
+      <div class="food-row" data-protein="26" data-serving="100 g">
+        <div class="food-main">
+          <label class="food-name">
+            <strong>Seitan = 26g Protein</strong>           </label>
+          <ul class="small bulletless">
+            <li>Calories: ~120 kcal</li>
+            <li>Notes: Varies by brand/recipe. Low in lysine, pair with tofu, beans or pea protein.</li>
+          </ul>
+        </div>
+        <div class="food-qty">
+          <button type="button" class="qty-btn" data-delta="-1" aria-label="Decrease Seitan">−</button>
+          <input type="number" class="qty-input" value="0" min="0" max="20" step="1" aria-label="Seitan servings">
+          <button type="button" class="qty-btn" data-delta="1" aria-label="Increase Seitan">+</button>
+        </div>
+      </div>
+
+      <!-- Tempeh -->
+      <div class="food-row" data-protein="19" data-serving="100 g">
+        <div class="food-main">
+          <label class="food-name">
+            <strong>Tempeh = 19g Protein </strong>
+          </label>
+          <ul class="small bulletless">
+            <li>Calories: ~195 kcal</li>
+            <li>Notes: Fermented soy; very filling</li>
+          </ul>
+        </div>
+        <div class="food-qty">
+          <button type="button" class="qty-btn" data-delta="-1" aria-label="Decrease Tempeh">−</button>
+          <input type="number" class="qty-input" value="0" min="0" max="20" step="1" aria-label="Tempeh servings">
+          <button type="button" class="qty-btn" data-delta="1" aria-label="Increase Tempeh">+</button>
+        </div>
+      </div>
+
+      <!-- Tofu -->
+      <div class="food-row" data-protein="12" data-serving="100 g">
+        <div class="food-main">
+          <label class="food-name">
+            <strong>Tofu (firm) = 12g Protein</strong>
+     </label>
+          <ul class="small bulletless">
+            <li>Calories: ~125 kcal</li>
+            <li>Notes: Press for better texture</li>
+          </ul>
+        </div>
+        <div class="food-qty">
+          <button type="button" class="qty-btn" data-delta="-1" aria-label="Decrease Tofu">−</button>
+          <input type="number" class="qty-input" value="0" min="0" max="20" step="1" aria-label="Tofu servings">
+          <button type="button" class="qty-btn" data-delta="1" aria-label="Increase Tofu">+</button>
+        </div>
+      </div>
+
+      <!-- Edamame -->
+      <div class="food-row" data-protein="11" data-serving="100 g">
+        <div class="food-main">
+          <label class="food-name">
+            <strong>Edamame (cooked) = 11g Protein</strong>
+          </label>
+          <ul class="small bulletless">
+            <li>Calories: ~120 kcal</li>
+            <li>Notes: Great snack/post-workout</li>
+          </ul>
+        </div>
+        <div class="food-qty">
+          <button type="button" class="qty-btn" data-delta="-1" aria-label="Decrease Edamame">−</button>
+          <input type="number" class="qty-input" value="0" min="0" max="20" step="1" aria-label="Edamame servings">
+          <button type="button" class="qty-btn" data-delta="1" aria-label="Increase Edamame">+</button>
+        </div>
+      </div>
+
+      <!-- Lentils -->
+      <div class="food-row" data-protein="9" data-serving="100 g">
+        <div class="food-main">
+          <label class="food-name">
+            <strong>Lentils (cooked) = 9g Protein</strong> 
+          </label>
+          <ul class="small bulletless">
+            <li>Calories: ~116 kcal</li>
+            <li>Notes: Red/green; easy batch cook</li>
+          </ul>
+        </div>
+        <div class="food-qty">
+          <button type="button" class="qty-btn" data-delta="-1" aria-label="Decrease Lentils">−</button>
+          <input type="number" class="qty-input" value="0" min="0" max="20" step="1" aria-label="Lentils servings">
+          <button type="button" class="qty-btn" data-delta="1" aria-label="Increase Lentils">+</button>
+        </div>
+      </div>
+
+      <!-- Chickpeas / Beans -->
+      <div class="food-row" data-protein="9" data-serving="100 g">
+        <div class="food-main">
+          <label class="food-name">
+            <strong>Chickpeas / Beans (cooked) = 9g Protein</strong>
+          </label>
+          <ul class="small bulletless">
+            <li>Calories: ~127–164 kcal</li>
+            <li>Notes: Chili, curry, salad</li>
+          </ul>
+        </div>
+        <div class="food-qty">
+          <button type="button" class="qty-btn" data-delta="-1" aria-label="Decrease Beans">−</button>
+          <input type="number" class="qty-input" value="0" min="0" max="20" step="1" aria-label="Beans servings">
+          <button type="button" class="qty-btn" data-delta="1" aria-label="Increase Beans">+</button>
+        </div>
+      </div>
+
+<!-- Oats -->
+<div class="food-row" data-protein="13" data-serving="100 g">
+  <div class="food-main">
+    <label class="food-name">
+      <strong>Oats (dry) = 13g Protein</strong>
+    </label>
+    <ul class="small bulletless">
+      <li>Calories: ~389 kcal</li>
+      <li>Notes: Solid base for shakes</li>
+    </ul>
+  </div>
+  <div class="food-qty">
+    <button type="button" class="qty-btn" data-delta="-1" aria-label="Decrease Oats">−</button>
+    <input type="number" class="qty-input" value="0" min="0" max="20" step="1" aria-label="Oats servings">
+    <button type="button" class="qty-btn" data-delta="1" aria-label="Increase Oats">+</button>
+  </div>
+</div>
+
+      <!-- Quinoa -->
+      <div class="food-row" data-protein="4" data-serving="100 g">
+        <div class="food-main">
+          <label class="food-name">
+            <strong>Quinoa (cooked) = 4g Protein</strong> 
+          </label>
+          <ul class="small bulletless">
+            <li>Calories: ~120 kcal</li>
+            <li>Notes: Complete protein, lighter</li>
+          </ul>
+        </div>
+        <div class="food-qty">
+          <button type="button" class="qty-btn" data-delta="-1" aria-label="Decrease Quinoa">−</button>
+          <input type="number" class="qty-input" value="0" min="0" max="20" step="1" aria-label="Quinoa servings">
+          <button type="button" class="qty-btn" data-delta="1" aria-label="Increase Quinoa">+</button>
+        </div>
+      </div>
+
+      <!-- Vegan protein powder -->
+      <div class="food-row" data-protein="24" data-serving="1 scoop (≈30 g)">
+        <div class="food-main">
+          <label class="food-name">
+            <strong>Vegan protein powder = 24g Protein per scoop</strong>
+          </label>
+          <ul class="small bulletless">
+            <li>Calories: ~100–120 kcal</li>
+            <li>Notes: Pea/rice blends digest well</li>
+          </ul>
+        </div>
+        <div class="food-qty">
+          <button type="button" class="qty-btn" data-delta="-1" aria-label="Decrease Protein Powder">−</button>
+          <input type="number" class="qty-input" value="0" min="0" max="20" step="1" aria-label="Protein powder scoops">
+          <button type="button" class="qty-btn" data-delta="1" aria-label="Increase Protein Powder">+</button>
+        </div>
+      </div>
+
+      <!-- Soy milk -->
+      <div class="food-row" data-protein="8" data-serving="250 ml">
+        <div class="food-main">
+          <label class="food-name">
+            <strong>Soy milk (per 250 ml/ 8.5 oz) = 8g Protein</strong>           </label>
+          <ul class="small bulletless">
+            <li>Calories: ~80–100 kcal</li>
+            <li>Notes: Choose high-protein versions</li>
+          </ul>
+        </div>
+        <div class="food-qty">
+          <button type="button" class="qty-btn" data-delta="-1" aria-label="Decrease Soy Milk">−</button>
+          <input type="number" class="qty-input" value="0" min="0" max="20" step="1" aria-label="Soy milk servings">
+          <button type="button" class="qty-btn" data-delta="1" aria-label="Increase Soy Milk">+</button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="small" style="margin-top:10px;">Values are approximate; check your brand’s label.</div>
+  </div>
+</section>
+
+
+
+<!-- STEP 3 -->
+<section class="pad">
+  <h3>Step 3 — Quick meal ideas (exact amounts)</h3>
+  <div class="panel">
+    <ul style="margin:0; padding-left:18px;">
+      <li style="margin-bottom:10px">
+        <strong>Protein Smoothie </strong> 🥤
+        <ul class="small" style="margin:4px 0 0 18px; padding-left:0;">
+          <li>Vegan protein powder — 1 scoop (30 g ≈ ¼ cup): ≈ 120 kcal / 24 g protein</li>
+          <li>Soy milk — 300 ml (≈ 1¼ cups): ≈ 110 kcal / 8 g protein</li>
+          <li>Oats (dry) — 40 g (≈ ½ cup): ≈ 156 kcal / 5 g protein</li>
+          <li>Peanut butter — 15 g (1 tbsp): ≈ 90 kcal / 4 g protein</li>
+        </ul>
+        <em>Totals: ≈ 460 kcal • ≈ 41 g protein</em>
+      </li>
+      <li style="margin-bottom:10px">
+        <strong>Tofu Scramble on Toast</strong> 🍞
+        <ul class="small" style="margin:4px 0 0 18px; padding-left:0;">
+          <li>Firm tofu — 150 g (≈ 5¼ oz): ≈ 188 kcal / 18 g protein</li>
+          <li>Nutritional yeast — 5 g (≈ 1 tbsp): ≈ 20 kcal / 2 g protein</li>
+          <li>Seeded bread — 2 slices (70 g ≈ 2½ oz): ≈ 180 kcal / 15 g protein</li>
+        </ul>
+        <em>Totals: ≈ 388 kcal • ≈ 35 g protein</em>
+      </li>
+      <li style="margin-bottom:10px">
+        <strong>Tempeh Buddha Bowl</strong> 🥗
+        <ul class="small" style="margin:4px 0 0 18px; padding-left:0;">
+          <li>Tempeh — 150 g (≈ 5¼ oz): ≈ 293 kcal / 28 g protein</li>
+          <li>Cooked quinoa — 100 g (≈ ½ cup): ≈ 120 kcal / 4 g protein</li>
+          <li>Mixed vegetables — 150 g (≈ 1 cup): ≈ 75 kcal / 3 g protein</li>
+          <li>Tahini — 10 g (≈ 2 tsp): ≈ 59 kcal / 2 g protein</li>
+        </ul>
+        <em>Totals: ≈ 547 kcal • ≈ 37 g protein</em>
+      </li>
+      <li style="margin-bottom:10px">
+        <strong>Hearty Chili</strong> 🍛
+        <ul class="small" style="margin:4px 0 0 18px; padding-left:0;">
+          <li>Cooked lentils — 120 g (≈ ⅔ cup): ≈ 139 kcal / 11 g protein</li>
+          <li>Black beans (cooked) — 100 g (≈ ½ cup): ≈ 164 kcal / 9 g protein</li>
+          <li>Soy mince (cooked) — 80 g (≈ ½ cup): ≈ 140 kcal / 14 g protein</li>
+          <li>Cooked rice — 100 g (≈ ⅔ cup): ≈ 130 kcal / 3 g protein</li>
+        </ul>
+        <em>Totals: ≈ 573 kcal • ≈ 37 g protein</em>
+      </li>
+      <li>
+        <strong>Seitan Stir-fry</strong> 🍲
+        <ul class="small" style="margin:4px 0 0 18px; padding-left:0;">
+          <li>Seitan — 120 g (≈ 4¼ oz): ≈ 144 kcal / 30 g protein</li>
+          <li>Mixed vegetables — 200 g (≈ 1¼ cups): ≈ 100 kcal / 4 g protein</li>
+          <li>Cooked rice — 150 g (≈ 1 cup): ≈ 195 kcal / 4 g protein</li>
+          <li>Oil — 5 g (1 tsp): ≈ 45 kcal / 0 g protein</li>
+        </ul>
+        <em>Totals: ≈ 484 kcal • ≈ 38 g protein</em>
+      </li>
+    </ul>
+    <div class="small" style="margin-top:10px;">
+      Notes: Estimates based on typical per 100g - 1/2 cup - 3.6oz values listed in Step 2 (cooked weights where relevant). 
+      Brands and packaging vary — use your label for final numbers.
+    </div>
+  </div>
+</section>
+
+
+<!-- TIPS -->
+<section class="pad">
+  <div class="tips-head">
+    <h3>Joe the Plant-Based Coach tips</h3>
+    <img
+      src="https://storage.googleapis.com/msgsndr/knFGsGObe2Xhhalou0C6/media/68b7b51a76561e1772181003.png"
+      alt="Joe Wax — The Plant Based Coach"
+      class="logo tips-logo"
+      loading="lazy"
+      width="44"
+      height="44"
+    />
+  </div>
+
+  <div class="panel">
+    <ul style="margin:0; padding-left:18px;">
+      <li>Soy, seitan and blends are your low-effort boosters.</li>
+      <li>Track protein first; let carbs/fats adjust.</li>
+      <li>Plateaus? Increase protein slightly.</li>
+      <li>Don’t overcomplicate supplements.</li>
+    </ul>
+  </div>
+</section>
+
+      <!-- UNIFIED CTA & TESTIMONIALS SECTION -->
+      <section class="pad">
+        <div class="grid-2">
+          <div>
+            <h3>Ready for the full blueprint?</h3>
+            <div class="panel">
+              <strong>Next step:</strong><br>
+Want the full training + nutrition system? <br>
+              👉 <a href="https://veganproteinmastery.com/?lm=proteincheatsheetcta" target="_blank" style="color:var(--red);font-weight:600;text-decoration:none;">Vegan Protein Mastery</a>
+ — the no-fluff body-transformation system I use with 100+ plant-based clients.
+            </div>
+          </div>
+          <div>
+            <h3>Proof that it works</h3>
+            <div class="panel testimonial">
+              <p>“I dropped <strong>50lbs</strong> and lowered BP — Joe’s system made it simple.”<br>— <em>Sean S.</em></p>
+              <p style="margin-bottom:0;">“I thought I knew vegan nutrition. I still learnt <strong>a lot</strong> ”<br>— <em>Daisy C.</em></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+</main>
+
+      <footer class="pad" role="contentinfo">
+        © <span id="year"></span> Vegan Protein Mastery • Plant-based strength
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    // Calculator logic
+    const calcBtn = document.getElementById('calcBtn');
+    function round(n){ return Math.round(n); }
+    function toKg(val, units){ return units === 'lb' ? (val/2.20462) : val; }
+    calcBtn?.addEventListener('click', () => {
+      const goal = document.getElementById('goal').value;
+      const units = document.getElementById('units').value;
+      const w = parseFloat(document.getElementById('weight').value);
+      if(!w || w <= 0){ alert('Add your body weight.'); return; }
+      const kg = toKg(w, units);
+      let lowPerKg, highPerKg;
+      if(goal === 'gain'){ lowPerKg = 1.8; highPerKg = 2.2; }
+      else if(goal === 'fatloss'){ lowPerKg = 2.0; highPerKg = 2.4; }
+      else { lowPerKg = 1.4; highPerKg = 1.6; }
+      const low = round(kg * lowPerKg);
+      const high = round(kg * highPerKg);
+      const perMeal = `${round(low/3)}–${round(high/4)} g`;
+      document.getElementById('pLow').textContent = low + ' g/day';
+      document.getElementById('pHigh').textContent = high + ' g/day';
+      document.getElementById('pPer').textContent = perMeal;
+      document.getElementById('result').style.display = 'grid';
+      calcBtn.textContent = 'Recalculate';
+   
+      // Make thresholds available to Step 2 logic
+      window.proteinTargets = { low, high };
+
+      // Refresh the status line in case the user already added foods
+      updateProteinStatus();
+    });
+
+    // **REVISED SCRIPT TO BUILD MOBILE CARDS**
+    function buildFoodCards(){
+      const table = document.getElementById('foodTable');
+      const container = document.getElementById('foodCardsContainer');
+      if(!table || !container) return;
+
+      // Clear any old content
+      container.innerHTML = '';
+
+      const rows = Array.from(table.querySelectorAll('tbody tr'));
+      const fragment = document.createDocumentFragment();
+
+      rows.forEach(row => {
+        const cells = Array.from(row.children).map(cell => cell.textContent.trim());
+        if (cells.length < 4) return; // Ensure row has enough data
+
+        const card = document.createElement('div');
+        card.className = 'food-card';
+        card.innerHTML = `
+          <div class="food-card-title">${cells[0]}</div>
+          <div class="food-card-details">
+            <div><strong>Protein:</strong> ${cells[1]}</div>
+            <div><strong>Calories:</strong> ${cells[2]}</div>
+            <div><strong>Notes:</strong> ${cells[3]}</div>
+          </div>
+        `;
+        fragment.appendChild(card);
+      });
+
+      container.appendChild(fragment);
+    }
+
+    // Run scripts after the page content is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('year').textContent = new Date().getFullYear();
+      buildFoodCards();
+    });
+
+    // ---- Target status updater (global) ----
+    function updateProteinStatus(totalVal){
+      const badgeEl  = document.getElementById('proteinBadge');
+      const statusEl = document.getElementById('proteinStatus');
+      if(!badgeEl || !statusEl) return;
+
+      // Current total (if not passed in)
+      const currentTotal = typeof totalVal === 'number'
+        ? totalVal
+        : parseFloat((document.getElementById('proteinTotal')?.textContent || '0').replace(/[^\d.]/g, '')) || 0;
+
+      // Reset state
+      badgeEl.classList.remove('target-low','target-high');
+      statusEl.style.display = 'none';
+      statusEl.textContent = '';
+
+      // Require targets (user hasn’t run Step 1 yet)
+      const targets = window.proteinTargets;
+      if(!targets || !Number.isFinite(targets.low) || !Number.isFinite(targets.high)) return;
+
+      // Apply state based on thresholds
+      if(currentTotal >= targets.high){
+        badgeEl.classList.add('target-high');
+        statusEl.textContent = 'High protein target reached!';
+        statusEl.style.display = '';
+      } else if(currentTotal >= targets.low){
+        badgeEl.classList.add('target-low');
+        statusEl.textContent = 'Low protein target reached!';
+        statusEl.style.display = '';
+      }
+    }
+
+    // ===== Step 2 logic: tally protein from selected foods =====
+    (function(){
+      const foodsEl = document.getElementById('foods');
+      const totalEl = document.getElementById('proteinTotal');
+      const clearBtn = document.getElementById('clearFoods');
+      if(!foodsEl || !totalEl) return;
+
+      function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
+
+      function recalc(){
+        let total = 0;
+        foodsEl.querySelectorAll('.food-row').forEach(row => {
+          const perServing = parseFloat(row.getAttribute('data-protein')) || 0;
+          const qtyInput = row.querySelector('.qty-input');
+          const qty = parseFloat(qtyInput?.value) || 0;
+          total += perServing * qty;
+        });
+        // Round to whole grams for a clean UI
+        totalEl.textContent = Math.round(total) + ' g';
+        updateProteinStatus(total);
+      }
+
+      // Hook up +/- buttons and inputs
+      foodsEl.addEventListener('click', (e) => {
+        const btn = e.target.closest('.qty-btn');
+        if(!btn) return;
+        const row = btn.closest('.food-row');
+        const input = row.querySelector('.qty-input');
+        const delta = parseInt(btn.getAttribute('data-delta'), 10) || 0;
+        const next = clamp((parseFloat(input.value)||0) + delta, parseFloat(input.min)||0, parseFloat(input.max)||999);
+        input.value = next;
+        recalc();
+      });
+
+      foodsEl.addEventListener('input', (e) => {
+        const input = e.target.closest('.qty-input');
+        if(!input) return;
+        // sanitise on the fly
+        const min = parseFloat(input.min)||0, max = parseFloat(input.max)||999;
+        input.value = clamp(parseFloat(input.value)||0, min, max);
+        recalc();
+      });
+
+      clearBtn?.addEventListener('click', () => {
+        foodsEl.querySelectorAll('.qty-input').forEach(i => i.value = 0);
+        recalc();
+      });
+
+      // First render
+      recalc();
+    })();
+</script>
+
+</body>
+</html>
